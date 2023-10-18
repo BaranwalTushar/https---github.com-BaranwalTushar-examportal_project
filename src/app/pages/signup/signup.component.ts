@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UrlSerializer } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(private userService:UserService) {}
+  constructor(private userService:UserService,private snack:MatSnackBar) {}
 
   public user={
     username:'',
@@ -26,14 +28,22 @@ export class SignupComponent implements OnInit {
   formSubmit(){
     console.log(this.user);
     if(this.user.username=='' || this.user.username==null){
-      alert("User is required!!")
+      //alert("User is required!!")
+      this.snack.open("username is required !! ","",{
+        duration: 3000,
+        
+      });
       return;
     }
 
     //addUser: userservice
     this.userService.addUser(this.user).subscribe({
-      next:(data)=>console.log(data),
-      error:(err)=>console.log(err),  
+      next:(data:any)=>{console.log(data),
+        Swal.fire("Successfully done !!","user id is " + data.id, "success");
+        
+      },
+      error:(err)=>console.log(err),
+        
       complete:()=>console.log("completed")
     }
      

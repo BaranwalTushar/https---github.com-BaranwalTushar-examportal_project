@@ -2,32 +2,37 @@
 
   <div class="container">
 
-    <div class="row" style="margin-top: 20px ;"> 
+    <div class="row" > 
         
         <div class="col-md-6-md-3 offset-md-3">
-            <div class="container text-center">
+          <mat-card>
+
+             <div class="container text-center">
                 <img src="../../../assets/logo.png" alt="">
             </div>
 
            <h1 class="text-center">Register Here!!</h1>
 
-           {{user | json}}
+           <!--{{user | json}}-->
 
            <form (ngSubmit)="formSubmit()">
             <!--Username field-->
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Username</mat-label>
                 <input
+                required
                 [(ngModel)]="user.username"
                 name="username"
                   
                 matInput placeholder="Enter here"/>
+                <mat-hint>User name must be unique !!</mat-hint>
                </mat-form-field>
 
               <!--password field-->
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>UserPassword</mat-label>
                 <input
+                required
                 [(ngModel)]="user.password"
                 name="password"
 
@@ -38,6 +43,7 @@
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Firstname</mat-label>
                 <input
+                required
                 
                 [(ngModel)]="user.firstname"
                 name="firstname"
@@ -48,6 +54,7 @@
                <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Lastname</mat-label>
                 <input
+                required
                 
                 [(ngModel)]="user.lastname"
                 name="lastname"
@@ -58,6 +65,7 @@
                <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Emailaddress</mat-label>
                 <input 
+                required
                 
                 [(ngModel)]="user.email"
                 name="email"
@@ -68,6 +76,7 @@
                <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Phonenumber</mat-label>
                 <input 
+                required
                 
                 [(ngModel)]="user.phone"
                 name="phone"
@@ -82,8 +91,13 @@
 
 
            </form>
+          </mat-card>
+         
            
-        </div>  
+           
+        </div>
+      
+        
 
     </div>
 
